@@ -10,6 +10,11 @@ class Cita {
         $this->conn = $database->getConnection();
     }
 
+    // Cierra la conexion automaticamente
+    public function __destruct(){
+        $this -> conn = null;
+    }
+
     // Crear una cita médica
     public function crearCita($nombre, $especialidad, $fecha){
         try {
