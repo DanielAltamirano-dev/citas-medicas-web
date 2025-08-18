@@ -8,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5"> 
         <h2 class="text-center mb-4">Agregar Cita Médica</h2>
-        <form action="/citas-medicas-web/controllers/CitaController.php" method="POST">
+        <form id="crearCitaForm">
             <!-- Campo oculto para la acción -->
             <input type="hidden" name="action" value="crear">
 
@@ -25,9 +25,9 @@
                 <label for="especialidad" class="form-label">Especialidad</label>
                 <select class="form-select" id="especialidad" name="especialidad" required>
                     <option value="" disabled selected>Seleccione una especialidad</option>
-                    <option value="Cardiología">Medicina General</option>
-                    <option value="Pediatría">Pediatria</option>
-                    <option value="Dermatología">Dermatologia</option>
+                    <option value="Medicina general">Medicina General</option>
+                    <option value="pediatría">Pediatria</option>
+                    <option value="dermatología">Dermatologia</option>
                 </select>
             </div>
 
@@ -40,8 +40,12 @@
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary w-100">Agregar Cita</button>
         </form>
-        <!-- Lleva a la otra ruta -->
+        <!-- Lleva a la pagina del listado de citas medicas -->
     <a href="/listado-citas" class="btn btn-primary mt-3">Lista de citas medicas</a>
     </div>
+
+    <script src="../public/js/agendar-cita.js"></script>
+    
+
 </body>
 </html>

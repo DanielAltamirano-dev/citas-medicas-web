@@ -38,7 +38,7 @@ class CitaController {
         $especialidad = $_POST['especialidad'] ?? null;
         $fecha = $_POST['fecha'] ?? null;
 
-        if(!nombre || !$especialidad || !$fecha) {
+        if(!$nombre || !$especialidad || !$fecha) {
             $this -> sendResponse(['error' => 'Faltan campos obligatorios'], 400);
             return;
         }
@@ -46,9 +46,9 @@ class CitaController {
         $resultado = $this -> citaModel -> crearCita($nombre, $especialidad, $fecha);
 
         if($resultado) {
-            $this -> sendResponse(['mensaje: ' => 'Cita creada correctamente'], 201);
+        $this->sendResponse(['success' => true], 201); // Devuelve el estado
         } else {
-            $this -> sendResponse(['mensaje error: ' => 'Error al crear la cita medica'], 500);
+            $this->sendResponse(['success' => false], 500); // Devuelve el estado
         }
 
     }
@@ -64,27 +64,27 @@ class CitaController {
         }
     }
 
-    // Elimiado logico se una cita (SOFT DELETE)
+    // Elimiado logico de una cita (SOFT DELETE)
     private function eliminarCita(){
         $id = $_POST['id'] ?? null;
 
         if(!$id){
-            $this -> sendResponse(['mensaje error: ' => 'No se ha recibido el id'], 400);
+            $this -> sendResponse(['success' => false, 'No se ha recibido el id'], 400);
             return;
         }
 
         $resultado = $this -> citaModel -> eliminarCita($id);
 
         if($resultado){
-            $this -> sendResponse(['mensaje: ' => 'Cita eliminada correctamente'], 200);
+            $this -> sendResponse(['success' => true, 'Cita eliminada correctamente'], 200);
         } else {
-            $this -> sendResponse(['mensaje error: ' => 'Error al eliminar la cita'], 500);
+            $this -> sendResponse(['success' => false, 'Error al eliminar la cita'], 500);
         }
 
     }
 
     // Envia el mensaje de respuesta al usuario
-    private function sendRespone($data, $statusCode = 200){
+    private function sendResponse($data, $statusCode = 200){
         http_response_code($statusCode);
         header('Content-Type: application/json');
         echo json_encode($data);

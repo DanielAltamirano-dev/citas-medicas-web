@@ -7,7 +7,7 @@ $routes = [
     'listado-citas' => './views/listado-citas.php',
 ];
 
-// Ruta por defecto
+// Ruta por deþecto
 if($requestUri === ''){
     $requestUri = 'agendar-cita';
 }

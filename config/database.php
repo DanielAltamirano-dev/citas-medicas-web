@@ -6,7 +6,7 @@ class Database {
     private $username = "root";
     private $password = "root"; 
     private $charset = "utf8mb4";
-    private static $conn = null;
+    private $conn = null;
 
     public function getConnection() {
         $this->conn = null;
@@ -23,6 +23,6 @@ class Database {
             echo "Error de conexión: " . $exception->getMessage();
             return null;
         }
-        return self::conn;
+        return $this -> conn;
     }
 }
