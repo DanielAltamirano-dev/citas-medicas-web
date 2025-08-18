@@ -4,7 +4,7 @@ $(document).ready(function () {
         url: '../controllers/CitaController.php',
         method: 'GET',
         success: function (response) {
-            // Verificar si la respuesta contiene datos
+            // Verifica si la respuesta contiene datos
             if (response && Array.isArray(response)) {
                 const citasBody = $('#citas-body');
                 response.forEach(cita => {
@@ -13,7 +13,7 @@ $(document).ready(function () {
                                 <tr>
                                     <td>${cita.nombre_paciente}</td>
                                     <td>${cita.especialidad}</td>
-                                    <td>${cita.fecha}</td>
+                                    <td>${cita.fecha_cita}</td>
                                     <td>
                                         <button class="btn btn-danger btn-sm eliminar-cita" data-id="${cita.id}">Eliminar</button>
                                     </td>

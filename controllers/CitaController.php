@@ -36,14 +36,14 @@ class CitaController {
     private function crearCita(){
         $nombre = $_POST['nombre'] ?? null;
         $especialidad = $_POST['especialidad'] ?? null;
-        $fecha = $_POST['fecha'] ?? null;
+        $fecha_cita = $_POST['fecha_cita'] ?? null;
 
-        if(!$nombre || !$especialidad || !$fecha) {
+        if(!$nombre || !$especialidad || !$fecha_cita) {
             $this -> sendResponse(['error' => 'Faltan campos obligatorios'], 400);
             return;
         }
 
-        $resultado = $this -> citaModel -> crearCita($nombre, $especialidad, $fecha);
+        $resultado = $this -> citaModel -> crearCita($nombre, $especialidad, $fecha_cita);
 
         if($resultado) {
         $this->sendResponse(['success' => true], 201); // Devuelve el estado

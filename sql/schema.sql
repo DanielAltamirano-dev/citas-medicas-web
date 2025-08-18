@@ -1,9 +1,13 @@
 CREATE DATABASE IF NOT EXISTS citas_medicas;
+
 USE citas_medicas;
 
 CREATE TABLE citas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_paciente VARCHAR(100) NOT NULL,
-    especialidad VARCHAR(50) NOT NULL,
-    fecha DATE NOT NULL
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre_paciente VARCHAR(100) NOT NULL,
+  especialidad VARCHAR(50) NOT NULL,
+  fecha_cita DATE NOT NULL,
+  estado TINYINT(1) NOT NULL DEFAULT 1 COMMENT '1=Activo, 0=Eliminado',
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

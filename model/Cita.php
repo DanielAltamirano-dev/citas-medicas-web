@@ -16,16 +16,16 @@ class Cita {
     }
 
     // Crear una cita médica
-    public function crearCita($nombre, $especialidad, $fecha){
+    public function crearCita($nombre, $especialidad, $fecha_cita){
         try {
-            $sql = "INSERT INTO " . $this->table . " (nombre_paciente, especialidad, fecha)
-                    VALUES (:nombre, :especialidad, :fecha)";
+            $sql = "INSERT INTO " . $this->table . " (nombre_paciente, especialidad, fecha_cita)
+                    VALUES (:nombre, :especialidad, :fecha_cita)";
             $stmt = $this->conn->prepare($sql);
             if (!$stmt) return false;
 
             $stmt->bindValue(':nombre', $nombre);
             $stmt->bindValue(':especialidad', $especialidad);
-            $stmt->bindValue(':fecha', $fecha);
+            $stmt->bindValue(':fecha_cita', $fecha_cita);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -37,7 +37,7 @@ class Cita {
     // Obtener todas las citas médicas activas
     public function obtenerCitas(){
         try {
-            $sql = "SELECT * FROM " . $this->table . " WHERE ESTADO = 1 ORDER BY fecha ASC";
+            $sql = "SELECT * FROM " . $this->table . " WHERE ESTADO = 1 ORDER BY fecha_cita ASC";
             $stmt = $this->conn->prepare($sql);
             if (!$stmt) return false;
 
